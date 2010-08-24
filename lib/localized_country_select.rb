@@ -104,3 +104,11 @@ module ActionView
 
   end
 end
+
+if defined?(::Rails::Railtie)
+  class LocalizedCountrySelect::Railtie < Rails::Railtie
+    initializer 'localized_country_select.i18n' do
+      I18n.load_path += Dir[ File.join(File.dirname(__FILE__), '..', 'locale', '*.{rb,yml}') ]
+    end
+  end
+end
